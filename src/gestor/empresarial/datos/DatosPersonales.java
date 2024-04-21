@@ -1,13 +1,12 @@
 package gestor.empresarial.datos;
-import java.util.ArrayList;
-import java.util.List;
+
 public class DatosPersonales {
     private int id;
     private String apellidos;
     private String nombre;
     private String whatsapp;
     private String correo;
-    public DatosPersonales(int id,String apellidos,String nombre, String whatsapp, String correo) {
+    public DatosPersonales() {
         this.id=id;
         this.apellidos=apellidos;
         this.nombre = nombre;

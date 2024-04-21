@@ -15,7 +15,7 @@ public final class Empleados implements iEmpleados {
     private DatosEmpresariales[] datosE = new DatosEmpresariales[100];
     private Contrato[] datosC = new Contrato[100];
 
-    private Empleados() {
+    public Empleados() {
     }
 
     public static Empleados getInstancia() {
