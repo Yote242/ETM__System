@@ -5,7 +5,7 @@ import java.util.List;
 
 public final class DatosEmpresariales{
     private String telefonoExterior;
-    private String extension;
+
     private String adscripcion;
     private String puesto;
     public DatosEmpresariales(String telefonoExterior, String adscripcion, String puesto){

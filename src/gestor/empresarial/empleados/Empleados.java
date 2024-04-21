@@ -29,10 +29,12 @@ public final class Empleados implements iEmpleados {
         if (!datosPerVacios()) {
             for (int j = 0; j < 100; j++) {
                 if (datPersonales[j] != null) {
+                    int id=datPersonales[j].getId();
+                    String apellido=datPersonales[j].getApellidos();
                     String nombre = datPersonales[j].getNombre();
                     String correo = datPersonales[j].getCorreo();
                     String whatsapp = datPersonales[j].getWhatsapp();
-                    System.out.println("ID:" + ids[j] + "\tNombre:" + nombre + "\tCorreo:" + correo + "\tWhats:" +
+                    System.out.println("ID:" + id + "\tNombre:" + nombre +"\tApellido:"+apellido + "\tCorreo:" + correo + "\tWhats:" +
                             whatsapp);
                 }
             }
@@ -42,10 +44,9 @@ public final class Empleados implements iEmpleados {
             for (int j = 0; j < 100; j++) {
                 if (datosE[j] != null) {
                     String telefono = datosE[j].getTelefonoExterior();
-                    String extencion = datosE[j].getExtension();
                     String adscripcion = datosE[j].getAdscripcion();
                     String puesto = datosE[j].getPuesto();
-                    System.out.println("ID:" + ids[j] + "\tTelefono:" + telefono + "\tExtension:" + extencion +
+                    System.out.println("ID:" + ids[j] + "\tTelefono:" + telefono +
                             "\tAdscripcion:" + adscripcion + "\tPuesto:" + puesto);
                 }
             }
