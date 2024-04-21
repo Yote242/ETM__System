@@ -1,38 +1,34 @@
 package gestor.empresarial.contrato;
 import gestor.empresarial.contrato.Cargos;
 import gestor.errores.GestionErrores;
+import java.util.ArrayList;
+import java.util.List;
 
 public final class Contrato {
-    // Declaración de variables miembro de la clase Contrato
-    private int id;
-    private int NoContrato;
+    private int noContrato;
     private int annio;
     private String horario;
-    private Cargos tipoCargo; // Tipo de objeto de la clase Cargos
-
-    // Constructor de la clase Contrato que toma un parámetro 'id'
-    public Contrato(int id){
-        // El constructor está vacío, no realiza ninguna acción al ser invocado
-        GestionErrores error = new GestionErrores();
+    private Cargos tipoCargo;
+    public Contrato(int noContrato, int annio, String horario, Cargos tipoCargo){
+        this.noContrato = noContrato;
+        this.annio = annio;
+        this.horario = horario;
+        this.tipoCargo = tipoCargo;
     }
-
-    // Método getter para obtener el número de contrato
     public int getNoContrato() {
-        return NoContrato;
+        return noContrato;
     }
-
-    // Método setter para establecer el número de contrato
-    public void setNoContrato(int a) {
-        NoContrato = a;
-    }
-
-    // Método getter para obtener el año del contrato
     public int getAnnio() {
         return annio;
     }
+    public String getHorario() {
 
-    // Método setter para establecer el año del contrato
-    public void setAnnio(int b) {
-        this.annio = b;
+        return horario;
+    }
+    public Cargos getTipoCargo() {
+        return tipoCargo;
+    }
+    public void setTipoCargo(Cargos tipoCargo) {
+        this.tipoCargo = tipoCargo;
     }
 }

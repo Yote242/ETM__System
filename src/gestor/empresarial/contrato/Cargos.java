@@ -1,9 +1,18 @@
 package gestor.empresarial.contrato;
 
 public enum Cargos {
-    //Para entender un poco mas de enumeracio, me apoye del siguien video https://youtu.be/EoPvlE85XAQ?si=igbbXkPZ1GIlGlJ-
-    confianza,      // Cargo de confianza, generalmente asociado con roles de liderazgo o responsabilidad
-    sindicalizado,  // Cargo sindicalizado, usualmente asociado con la afiliación a un sindicato
-    temporal        // Cargo temporal, que puede ser de duración limitada o sujeto a condiciones específicas
+    confianza("Empleado de confianza"),
+    sindicalizado("Empleado sindicalizado"),
+    temporal("Empleado temporal");
+    private final String nombre;
+
+    Cargos(String nombre) {
+        this.nombre = nombre;
+    }
+
+    @Override
+    public String toString() {
+        return nombre;
+    }
 
 }

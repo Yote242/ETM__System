@@ -1,69 +1,198 @@
 package gestor.empresarial.empleados;
+import gestor.empresarial.datos.*;
+import gestor.errores.GestionErrores;
 import gestor.errores.*;
 import gestor.empresarial.contrato.*;
-import java.util.*;
-public final class Empleados implements iEmpleados{
-    int i; // Variable de tipo entero para uso interno.
-    GestionErrores error; // Objeto para gestionar errores.
+import java.time.Year;
 
-    // Constructor de la clase Empleados.
-    public Empleados() {
-        // Constructor vacío.
-    }
+public final class Empleados implements iEmpleados {
+    private int i = 0;
+    public GestionErrores error;
+    private static Empleados instancia = null;
 
-    public void addDatosPersonales(String a,String b, String c){
-//
-    }
-    public void addContrato(int a,int b,String c,Cargos d){
-//
-    }
-    private int findEmpleado(int a){
-        return 1;
-    }
-    private int findEmpleado(String a){
-        return 2;
-    }
-    public void setWhatsap(int a, String b){
-//
+    private int[] ids = new int[100];
+    private DatosPersonales[] datPersonales = new DatosPersonales[100];
+    private DatosEmpresariales[] datosE = new DatosEmpresariales[100];
+    private Contrato[] datosC = new Contrato[100];
+
+    private Empleados() {
     }
 
+    public static Empleados getInstancia() {
+        if (instancia == null) {
+            instancia = new Empleados();
+        }
+        return instancia;
+    }
 
-    /*
-    private String datosPersonales(int datPerson){
-        return datPerson;
+    public void imprimirDatos() {
+        if (!datosPerVacios()) {
+            for (int j = 0; j < 100; j++) {
+                if (datPersonales[j] != null) {
+                    String nombre = datPersonales[j].getNombre();
+                    String correo = datPersonales[j].getCorreo();
+                    String whatsapp = datPersonales[j].getWhatsapp();
+                    System.out.println("ID:" + ids[j] + "\tNombre:" + nombre + "\tCorreo:" + correo + "\tWhats:" +
+                            whatsapp);
+                }
+            }
+        }
+
+        if (!datosEmpVacios()) {
+            for (int j = 0; j < 100; j++) {
+                if (datosE[j] != null) {
+                    String telefono = datosE[j].getTelefonoExterior();
+                    String extencion = datosE[j].getExtension();
+                    String adscripcion = datosE[j].getAdscripcion();
+                    String puesto = datosE[j].getPuesto();
+                    System.out.println("ID:" + ids[j] + "\tTelefono:" + telefono + "\tExtension:" + extencion +
+                            "\tAdscripcion:" + adscripcion + "\tPuesto:" + puesto);
+                }
+            }
+        }
+        if (!datosContratoVacios()) {
+            for (int j = 0; j < 100; j++) {
+                if (datosC[j] != null) {
+                    int noContrato = datosC[j].getNoContrato();
+                    int annio = datosC[j].getAnnio();
+                    String horario = datosC[j].getHorario();
+                    Cargos tipoCargo = datosC[j].getTipoCargo();
+                    System.out.println("ID:" + ids[j] + "\tNoConctato:" + noContrato + "\tAnnio:" + annio +
+                            "\tHorario:" + horario + "\tCargo:" + tipoCargo);
+                }
+            }
+        }
     }
-    public String getInfoEmpleado(int infEmple){
-        return infEmple;
+
+    public void addDatosPersonales(DatosPersonales datosPersonales) {
+        this.datPersonales[this.i] = datosPersonales;
+        ids[i] = i + 1;
+        this.i++;
     }
-    @java.lang.Override
-    public String getInfoEmpleado(String a) {
+
+    public void addDatosEmpresariales(int indice, DatosEmpresariales datosEmpresariales) {
+        this.datosE[indice] = datosEmpresariales;
+    }
+
+    public void addContrato(int indice, Contrato contrato) {
+        this.datosC[indice] = contrato;
+    }
+
+    public int findEmpleado(int id) {
+        int indice = -1;
+        for (int j = 0; j < 100; j++) {
+            if (ids[j] == id) {
+                indice = j;
+                break;
+            }
+        }
+        return indice;
+    }
+
+    public int findEmpleado(String nombre) {
+        int indice = -1;
+        for (int j = 0; j < 100; j++) {
+            if (datPersonales[j] != null && datPersonales[j].getNombre().equals(nombre)) {
+                indice = j;
+                break;
+            }
+        }
+        return indice;
+    }
+
+    public int getID(int indice) {
+        return ids[indice];
+    }
+
+    public DatosPersonales getInfoPersonal(int indice) {
+        return datPersonales[indice];
+    }
+
+    public DatosEmpresariales getInfoEmpresarial(int indice) {
+        return datosE[indice];
+    }
+
+    public Contrato getInfoContrato(int indice) {
+        return datosC[indice];
+    }
+
+    @Override
+    public Object getInfoEmpleado(int a) {
         return null;
     }
-    public String getInfoEmpleado(String a) {
-        return a;
+
+    @Override
+    public String getInfoEmpleado(String b) {
+        return null;
     }
 
-    */
+    public boolean datosPerVacios() {
+        int suma = 0;
+        for (int j = 0; j < 100; j++) {
+            if (datPersonales[j] != null) {
+                suma += 1;
+            }
+        }
+        return suma <= 0;
+    }
 
-    public void setAdscripcion(int a,String b){
-//
+    public boolean datosEmpVacios() {
+        int suma = 0;
+        for (int j = 0; j < 100; j++) {
+            if (datosE[j] != null) {
+                suma += 1;
+            }
+        }
+        return suma <= 0;
     }
-    public void setTelefonoExtension(int a,String b){
-//
+
+    public boolean datosContratoVacios() {
+        int suma = 0;
+        for (int j = 0; j < 100; j++) {
+            if (datosC[j] != null) {
+                suma += 1;
+            }
+        }
+        return suma <= 0;
     }
-    public void setPuesto(int a,String b){
-//
+
+    public void showDatosEmpleado() {
     }
-    public void showDatosEmpleado(){
-//
+
+    public void showContratosEmpleado(int i) {
     }
-    public void showContradosEmpleado(int a){
+
+    public int getAntiguedad(int annio) {
+        return Year.now().getValue() - annio;
     }
-    public int getAntiguedad(int a){
-        return 3;
+
+    public void borrarEmpleado(int indice) {
+        ids[indice] = -1;
+        datPersonales[indice] = null;
+        datosE[indice] = null;
+        datosC[indice] = null;
     }
-    public int getAntiguedad(){
-        return 4;
+
+    public void modificarEmpleado(int indice, DatosPersonales datosPersonales) {
+        this.datPersonales[indice] = datosPersonales;
     }
-    public void setCargo(Cargos a){}
+
+    public boolean buscarDuplicadosP(int id, String nombre, String whatsapp, String correo) {
+        boolean hayDuplicados = false;
+        for (int j = 0; j < 100; j++) {
+            DatosPersonales obj = getInfoPersonal(j);
+            if (obj != null) {
+                int idP = ids[j];
+                String nombreP = obj.getNombre();
+                String whatsP = obj.getWhatsapp();
+                String correoP = obj.getCorreo();
+                if (idP == id || nombreP.equals(nombre) || whatsP.equals(whatsapp) || correoP.equals(correo)) {
+                    hayDuplicados = true;
+                    break;
+                }
+            }
+        }
+        return hayDuplicados;
     }
+}
+
