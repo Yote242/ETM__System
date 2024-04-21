@@ -7,7 +7,7 @@ public final class GestionErrores {
     public GestionErrores() {
         mapError = new MapError();
 
-        archivoTexto = new ArchivoTexto("ListadoErrores");
+        archivoTexto = new ArchivoTexto("ErroresListadoEMT_System");
 
 
     }
