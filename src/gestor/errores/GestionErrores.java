@@ -6,10 +6,10 @@ public final class GestionErrores {
     private ArchivoTexto archivoTexto;
     public GestionErrores() {
         mapError = new MapError();
-        /*
+
         archivoTexto = new ArchivoTexto("ListadoErrores");
 
-         */
+
     }
     public String getDescripcionTecnica(int noError) {
 // Obtenemos el mensaje del error que corresponde a ese numero de error
@@ -19,13 +19,13 @@ public final class GestionErrores {
         return descripcionTecnica;
     }
     private void escribirEnArchivo(int noError, String descripcionTecnica) {
-        /*
+
         archivoTexto.abrirModoEscritura();
         archivoTexto.escribir("Código de error: " + noError + "\t");
         archivoTexto.escribir("Mensaje de error: " + descripcionTecnica + "\n");
         archivoTexto.cerrar();
 
-         */
+
     }
 
     }
