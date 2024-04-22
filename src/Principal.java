@@ -63,6 +63,7 @@ public class Principal {
 
                                     datosPersonales = new DatosPersonales(id, nombre, data2, data3, data4);
                                     empleados.addDatosPersonales(datosPersonales);
+                                    empleados.imprimirDatos();
                                 } catch (NumberFormatException e) {
                                     String mensaje = gestionErrores.getDescripcionTecnica(5);
                                 }
@@ -87,6 +88,7 @@ public class Principal {
 
                                         datosEmpresariales = new DatosEmpresariales(telExte, adscripcion, puesto);
                                         empleados.addDatosEmpresariales(datosEmpresariales);
+                                        empleados.imprimirDatos();
                                     } else {
                                         System.out.println("El id no existe");
                                         String mensaje = gestionErrores.getDescripcionTecnica(4);
@@ -119,7 +121,7 @@ public class Principal {
 
                                         Cargos tipoCargo = null;
                                         try {
-                                            tipoCargo = Cargos.valueOf(tipoCargoStr.toUpperCase());
+                                            tipoCargo = Cargos.valueOf(tipoCargoStr.toLowerCase());
                                         } catch (IllegalArgumentException e) {
                                             System.out.println("Tipo de cargo no válido.");
                                             return; // Terminar la ejecución del programa si el tipo de cargo no es válido
