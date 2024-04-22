@@ -77,6 +77,7 @@ public class Principal {
                                 try {
                                     if (idEmp == datosPersonales.getId()) {
                                         System.out.println("Trabajador Encontrado: " + idEmp);
+
                                         System.out.println("Ingrese un Telefono Exterior");
                                         String telExte = sc.nextLine();
 
@@ -88,7 +89,7 @@ public class Principal {
 
                                         datosEmpresariales = new DatosEmpresariales(telExte, adscripcion, puesto);
                                         empleados.addDatosEmpresariales(datosEmpresariales);
-                                        empleados.imprimirDatos();
+
                                     } else {
                                         System.out.println("El id no existe");
                                         String mensaje = gestionErrores.getDescripcionTecnica(4);

@@ -71,8 +71,7 @@ public final class Empleados implements iEmpleados {
     }
 
     public void addDatosEmpresariales(DatosEmpresariales datosEmpresariales) {
-        int indice = -1;
-        this.datosE[indice] = datosEmpresariales;
+
     }
 
     public void addContrato(int indice, Contrato contrato) {
