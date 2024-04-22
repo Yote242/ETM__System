@@ -6,16 +6,21 @@ public class DatosPersonales {
     private String nombre;
     private String whatsapp;
     private String correo;
-    public DatosPersonales() {
+    public DatosPersonales(int id, String nombre, String apellido, String correo, String whatsapp) {
         this.id=id;
         this.apellidos=apellidos;
         this.nombre = nombre;
         this.whatsapp = whatsapp;
         this.correo = correo;
     }
+
+
+
+
     public int getId(){
         return id;
     }
+
     public String getApellidos(){
         return apellidos;
     }

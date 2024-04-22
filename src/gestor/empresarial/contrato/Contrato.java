@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public final class Contrato {
+    private int id;
     private int noContrato;
     private int annio;
     private String horario;
@@ -15,6 +16,7 @@ public final class Contrato {
         this.horario = horario;
         this.tipoCargo = tipoCargo;
     }
+    public int getId(){return id;}
     public int getNoContrato() {
         return noContrato;
     }

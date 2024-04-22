@@ -1,7 +1,6 @@
 package gestor.empresarial.empleados;
 import gestor.empresarial.datos.*;
 import gestor.errores.GestionErrores;
-import gestor.errores.*;
 import gestor.empresarial.contrato.*;
 import java.time.Year;
 
@@ -71,7 +70,8 @@ public final class Empleados implements iEmpleados {
         this.i++;
     }
 
-    public void addDatosEmpresariales(int indice, DatosEmpresariales datosEmpresariales) {
+    public void addDatosEmpresariales(DatosEmpresariales datosEmpresariales) {
+        int indice = -1;
         this.datosE[indice] = datosEmpresariales;
     }
 
