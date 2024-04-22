@@ -1,4 +1,4 @@
-
+// Importación de las clases necesarias
 import java.util.Scanner;
 import gestor.empresarial.contrato.Contrato;
 import gestor.empresarial.contrato.Cargos;
@@ -7,9 +7,14 @@ import gestor.empresarial.datos.DatosEmpresariales;
 import gestor.empresarial.empleados.Empleados;
 import gestor.errores.*;
 
+// Clase Principal
 public class Principal {
-    public static void  main(String[] args) {
+    // Método principal
+    public static void main(String[] args) {
+        // Instanciación de la clase GestionErrores
         GestionErrores gestionErrores = new GestionErrores();
+
+        // Declaración de variables
         DatosPersonales datosPersonales = null;
         DatosEmpresariales datosEmpresariales;
         Contrato contrato;
@@ -17,9 +22,11 @@ public class Principal {
 
         Empleados empleados = new Empleados();
 
+        // Instanciación del objeto Scanner
         Scanner sc = new Scanner(System.in);
         String opc, opcCont;
 
+        // Estructura do-while principal
         do {
             System.out.println("\t\t******SYSTEM******* \n");
             System.out.println("\t Ingrese Usuario: ");
@@ -32,6 +39,7 @@ public class Principal {
                 if (password.equals("yar1204")) {
                     System.out.println("Acceso Autorizado \n");
 
+                    // Estructura do-while para el menú
                     do {
                         System.out.println("\t\t************MENU************\n");
                         System.out.println("Datos Personales  \t | OPC(1)");
@@ -52,16 +60,16 @@ public class Principal {
                                     System.out.println("\t Nombre: ");
                                     String nombre = sc.nextLine();
 
-                                    System.out.println("\t apellido: ");
-                                    String data2 = sc.nextLine();
+                                    System.out.println("\t Apellido: ");
+                                    String apellido = sc.nextLine();
 
-                                    System.out.println("\t correo: ");
-                                    String data3 = sc.nextLine();
+                                    System.out.println("\t Correo: ");
+                                    String correo = sc.nextLine();
 
                                     System.out.println("\t WhatsApp: ");
-                                    String data4 = sc.nextLine();
+                                    String whatsapp = sc.nextLine();
 
-                                    datosPersonales = new DatosPersonales(id, nombre, data2, data3, data4);
+                                    datosPersonales = new DatosPersonales(id, nombre, apellido, correo, whatsapp);
                                     empleados.addDatosPersonales(datosPersonales);
                                     empleados.imprimirDatos();
                                 } catch (NumberFormatException e) {
@@ -71,17 +79,16 @@ public class Principal {
 
                             case 2:
                                 System.out.println("\t Datos Empresariales\n");
-                                System.out.println("Ingere el ID del empleado");
+                                System.out.println("Ingrese el ID del empleado");
                                 int idEmp = sc.nextInt();
 
                                 try {
                                     if (idEmp == datosPersonales.getId()) {
                                         System.out.println("Trabajador Encontrado: " + idEmp);
-
                                         System.out.println("Ingrese un Telefono Exterior");
                                         String telExte = sc.nextLine();
 
-                                        System.out.println("Ingrese la Adscripcio:");
+                                        System.out.println("Ingrese la Adscripcion:");
                                         String adscripcion = sc.nextLine();
 
                                         System.out.println("Ingrese el Puesto");
@@ -89,9 +96,8 @@ public class Principal {
 
                                         datosEmpresariales = new DatosEmpresariales(telExte, adscripcion, puesto);
                                         empleados.addDatosEmpresariales(datosEmpresariales);
-
                                     } else {
-                                        System.out.println("El id no existe");
+                                        System.out.println("El ID no existe");
                                         String mensaje = gestionErrores.getDescripcionTecnica(4);
                                     }
                                 } catch (NumberFormatException e) {
@@ -106,10 +112,10 @@ public class Principal {
 
                                 try {
                                     if (idCon == datosPersonales.getId()) {
-                                        System.out.println("Ingrese el numero de contrato: ");
+                                        System.out.println("Ingrese el número de contrato: ");
                                         int folio = sc.nextInt();
 
-                                        System.out.println("Ingrese el annio");
+                                        System.out.println("Ingrese el año");
                                         int annio = sc.nextInt();
 
                                         sc.nextLine(); // Consumir el salto de línea
@@ -117,7 +123,7 @@ public class Principal {
                                         System.out.println("Ingrese la hora de registro");
                                         String hora = sc.nextLine();
 
-                                        System.out.println("Tipo de cargo: (confianza,sindicalizado,temporal) ");
+                                        System.out.println("Tipo de cargo: (confianza, sindicalizado, temporal) ");
                                         String tipoCargoStr = sc.nextLine();
 
                                         Cargos tipoCargo = null;
@@ -130,7 +136,7 @@ public class Principal {
 
                                         contrato = new Contrato(folio, annio, hora, tipoCargo);
                                     } else {
-                                        System.out.println("El id no existe");
+                                        System.out.println("El ID no existe");
                                         String mensaje = gestionErrores.getDescripcionTecnica(4);
                                     }
                                 } catch (NumberFormatException e) {
@@ -139,13 +145,13 @@ public class Principal {
                                 break;
 
                             default:
-                                System.out.println("Opcion del menu incorrecta");
+                                System.out.println("Opción del menú incorrecta");
                                 String mensaje = gestionErrores.getDescripcionTecnica(1);
 
-                                System.out.println("Desea continuar en el MENU (S/N): ");
+                                System.out.println("¿Desea continuar en el MENÚ (S/N): ");
                                 opcCont = sc.nextLine();
                         }
-                        System.out.println("Desea continuar en el MENU (S/N): ");
+                        System.out.println("¿Desea continuar en el MENÚ (S/N): ");
                         opcCont = sc.nextLine();
                     } while ((opcCont.equals("s")) || (opcCont.equals("S")));
                 } else {
@@ -156,9 +162,8 @@ public class Principal {
                 String mensaje = gestionErrores.getDescripcionTecnica(2);
             }
 
-            System.out.println("Desea Continuar? (S/N): \n");
+            System.out.println("¿Desea Continuar? (S/N): \n");
             opc = sc.nextLine();
         } while ((opc.equals("S")) || (opc.equals("s")));
     }
 }
-

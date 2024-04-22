@@ -1,6 +1,10 @@
 package gestor.archivos;
+// Importación de la clase File y las clases relacionadas con la manipulación de archivos
 import java.io.*;
-public final class ArchivoTexto extends ControlArchivos implements iFileText{
+
+// Definición de la clase ArchivoTexto que extiende de ControlArchivos e implementa iFileText
+public final class ArchivoTexto extends ControlArchivos implements iFileText {
+    // Declaración de variables miembro
     private File file;
     private FileReader fr;
     private BufferedReader br;
@@ -9,76 +13,93 @@ public final class ArchivoTexto extends ControlArchivos implements iFileText{
     private boolean archivoExiste;
     private boolean modoLectura;
     private boolean modoEscritura;
-    public ArchivoTexto(String tituloArchivo){
-        super();
 
-        try{
+    // Constructor que recibe el título del archivo como parámetro
+    public ArchivoTexto(String tituloArchivo) {
+        super(); // Llamada al constructor de la clase padre
+
+        try {
+            // Creación del objeto File con el título proporcionado
             file = new File(tituloArchivo);
-            if(!file.exists())
+
+            // Verificación de si el archivo existe, y en caso contrario, se crea uno nuevo
+            if (!file.exists())
                 file.createNewFile();
-            this.archivoExiste=true;
-            this.modoLectura=false;
-            this.modoEscritura=false;
-        }
-        catch (Exception e){
+
+            // Configuración de los indicadores de existencia y modos de operación
+            this.archivoExiste = true;
+            this.modoLectura = false;
+            this.modoEscritura = false;
+        } catch (Exception e) {
             System.out.println("Error al intentar buscar el archivo");
-            this.archivoExiste=false;
+            this.archivoExiste = false;
         }
     }
-    public void abrirModoLectura(){
-        if(archivoExiste==true){
-            try{
+
+    // Método para abrir el archivo en modo lectura
+    public void abrirModoLectura() {
+        if (archivoExiste == true) {
+            try {
+                // Inicialización de FileReader y BufferedReader para leer desde el archivo
                 fr = new FileReader(this.file.getAbsoluteFile());
                 br = new BufferedReader(this.fr);
-                this.modoLectura=true;
+                this.modoLectura = true;
                 System.out.println("Archivo abierto en modo lectura");
-            } catch (Exception e){
+            } catch (Exception e) {
                 System.out.println("Error: El archivo no se puede abrir en modo lectura");
             }
         }
     }
-    public String leer(){
-        if(archivoExiste==true) {
+
+    // Método para leer una línea del archivo
+    public String leer() {
+        if (archivoExiste == true) {
             try {
-                return this.br.readLine();
+                return this.br.readLine(); // Devuelve la línea leída desde el archivo
             } catch (Exception e) {
             }
         }
-        return null;
+        return null; // Devuelve null si no se puede leer o el archivo no existe
     }
-    public void abrirModoEscritura(){
-        if(archivoExiste==true){
-            try{
-                fw = new FileWriter(this.file.getAbsoluteFile(),true);
 
+    // Método para abrir el archivo en modo escritura
+    public void abrirModoEscritura() {
+        if (archivoExiste == true) {
+            try {
+                // Inicialización de FileWriter y BufferedWriter para escribir en el archivo
+                fw = new FileWriter(this.file.getAbsoluteFile(), true);
                 bw = new BufferedWriter(this.fw);
-                modoEscritura=true;
+                modoEscritura = true;
                 System.out.println("Archivo abierto en modo escritura");
-            } catch (Exception e){
+            } catch (Exception e) {
                 System.out.println("Error: El archivo no se puede abrir en modo escritura");
             }
         }
     }
-    public void escribir(String texto){
-        if (archivoExiste==true){
-            try{
-                this.bw.write(texto +"\n");
-            } catch (Exception e){
+
+    // Método para escribir texto en el archivo
+    public void escribir(String texto) {
+        if (archivoExiste == true) {
+            try {
+                this.bw.write(texto + "\n"); // Escribe el texto seguido de un salto de línea
+            } catch (Exception e) {
                 System.out.println("Error no se puede escribir informacion en el archivo");
             }
         }
     }
-    public void cerrar(){
-        if(modoEscritura==true){
-            try{
-                this.bw.close();
-                this.fw.close();
-            } catch (Exception e){ }
-        }
-        else if (modoLectura==true) {
+
+    // Método para cerrar el archivo
+    public void cerrar() {
+        if (modoEscritura == true) {
             try {
-                this.br.close();
-                this.fr.close();
+                this.bw.close(); // Cierra el BufferedWriter
+                this.fw.close(); // Cierra el FileWriter
+            } catch (Exception e) {
+            }
+        } else if (modoLectura == true) {
+            try {
+                this.br.close(); // Cierra el BufferedReader
+                this.fr.close(); // Cierra el FileReader
             } catch (Exception e) {
             }
         }
